@@ -1,15 +1,21 @@
 import styled from 'styled-components/native';
 import { spacing } from '../../styles/spacing/spacing';
+import { View } from 'react-native';
+import { appConstants } from '../../constants/appConstants';
 
-export const Container = styled.View`
+type Props = {
+  padding?: number;
+}
+
+export const Container = styled(View) <Props>`
   padding: ${spacing.s16}px;
-  top: ${spacing.s20}px;
+  top: ${({ padding }) => padding ? padding : appConstants.components.header.height}px;
   justify-content: top;
   flex:1;
 `;
 
 export const ListContainer = styled.View`
-  flex-shrink: 1, 
+  flex-shrink: 1;
 `;
 
 

@@ -3,9 +3,15 @@ import { View, Text, FlatList, ActivityIndicator, StyleSheet } from 'react-nativ
 import React, { useEffect, useState } from 'react';
 import { Container, Divider, ListContainer, Post } from './styles';
 import { getCities, getEvents, getPoints } from './store/homeStore';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Loader from '../../components/Loader';
+import { Center } from '../../components/Center/styles';
 
 
 export default function Home() {
+
+  const insets = useSafeAreaInsets();
+
   const [initial, setInitial] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -34,19 +40,19 @@ export default function Home() {
   }, []);
 
   if (initial) {
-    return <Container>
+    return <Center>
       <Text>Inicio</Text>
-    </Container>;
+    </Center>;
   }
+  
   if (loading) {
-    return <Container>
-      <ActivityIndicator size="large" color="#6565c9" />
-    </Container>;
+    return <Loader />;
   }
+
   if (error) {
-    return <Container>
-      <Text>Erro</Text>
-    </Container>;
+    return <Center>
+      <Text>Inicio</Text>
+    </Center>;
   }
 
   return (
