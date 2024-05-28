@@ -1,6 +1,7 @@
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../services/firebase/firebaseConfig";
 import { appKeys } from "../../../constants/appKeys";
+import { CityEvent } from "../../../model/CityEvent/CityEvent";
 
 
 
@@ -18,14 +19,14 @@ export const getCities = async () => {
  }
 };
 
-export const getEvents = async () => {
+export const getEvents = async (): Promise<CityEvent[]> => {
  try {
   const querySnapshot = await getDocs(collection(db, appKeys.events));
-  const data = [];
-  querySnapshot.forEach((doc) => {
-   data.push({ ...doc.data(), id: doc.id });
-  });
-  return data;
+  const list = querySnapshot.docs.map(doc => ({
+   id: doc.id,
+   ...doc.data(),
+ })) as CityEvent[];
+  return list;
  } catch (error) {
   console.error('Erro ao buscar eventos:', error);
   throw error;

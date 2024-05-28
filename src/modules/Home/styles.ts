@@ -2,16 +2,18 @@ import styled from 'styled-components/native';
 import { spacing } from '../../styles/spacing/spacing';
 import { View } from 'react-native';
 import { appConstants } from '../../constants/appConstants';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 
 
-type Props = {
-  padding?: number;
-}
 
-export const Container = styled(View) <Props>`
-  justify-content: top;
+
+export const Scrollable = styled(ScrollView).attrs({
+  showsVerticalScrollIndicator: false,
+  bounces: false,
+})`
+
 `;
 
 

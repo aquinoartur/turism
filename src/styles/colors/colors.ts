@@ -12,6 +12,7 @@ type ColorPalette = {
  success: string;
  light: string;
  dark: string;
+ regularGray: string;
 };
 
 const appColors: ColorPalette = {
@@ -27,7 +28,8 @@ const appColors: ColorPalette = {
  text: '#000000',          // Preto
  error: '#F44336',         // Vermelho
  warning: '#FF9800',       // Laranja
- success: '#4CAF50'        // Verde (mesmo da cor primária)
+ success: '#4CAF50',        // Verde (mesmo da cor primária)
+ regularGray: '#7A7B7A',    // Cinza
 };
 
 export default appColors;

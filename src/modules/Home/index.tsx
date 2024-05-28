@@ -1,17 +1,21 @@
 
-import { View, Text, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator, StyleSheet, ListRenderItem } from 'react-native';
 import React, { useEffect, useState, useLayoutEffect } from 'react';
-import { Container, Divider, ListView } from './styles';
+import { Scrollable, Divider, ListView } from './styles';
 import { getCities, getEvents, getPoints } from './store/homeStore';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Loader from '../../components/Loader';
-import { Center } from '../../components/Center/styles';
 import InitialState from '../../components/InitialState';
 import ErrorState from '../../components/ErrorState';
 import CityCard from './components/CityCard';
+import { CityEvent } from "../../model/CityEvent/CityEvent";
+
 
 import { HeaderContent } from './components/HeaderContent';
 import EventCard from './components/EventCard';
+import AppLabel from '../../components/AppLabel';
+import { spacing } from '../../styles/spacing/spacing';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 export default function Home({ navigation }) {
@@ -23,7 +27,7 @@ export default function Home({ navigation }) {
   const [error, setError] = useState(null);
 
   const [cities, setCities] = useState([]);
-  const [events, setEvents] = useState([]);
+  const [events, setEvents] = useState<CityEvent[]>([]);
   const [points, setPoints] = useState([]);
 
   const [headerTitle, setTitle] = useState('');
@@ -70,9 +74,16 @@ export default function Home({ navigation }) {
   if (error)
     return <ErrorState />;
 
+  const renderEvent: ListRenderItem<CityEvent> = ({ item, index }) => (
+    <EventCard
+      event={item.name}
+      image={item.photos[0]}
+      marginLeft={index == 0 && spacing.s16}
+    />
+  );
 
   return (
-    <Container>
+    <Scrollable>
       <ListView
         data={cities[0].photos}
         keyExtractor={(photo) => photo.toString()}
@@ -83,26 +94,16 @@ export default function Home({ navigation }) {
           />
         )}
       />
+      <AppLabel label='Eventos' />
       <ListView
-        data={events[0].photos}
-        keyExtractor={(photo) => photo.toString()}
-        renderItem={({ item: photo }) => (
-          <EventCard
-            event={events[0].name}
-            image={photo as string}
-          />
-        )}
+        data={events}
+        renderItem={renderEvent}
       />
-      <FlatList
-        data={points}
-        keyExtractor={(points) => (points.id as String).toString()}
-        renderItem={({ item: point }) => (
-          <View>
-            <Text>{point.name}{'\n'} </Text>
-            <Divider />
-          </View>
-        )}
+      <AppLabel label='Pontos Turísticos' />
+      <ListView
+        data={events}
+        renderItem={renderEvent}
       />
-    </Container>
+    </Scrollable>
   );
 }

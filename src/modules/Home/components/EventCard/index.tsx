@@ -6,11 +6,11 @@ import { Text } from 'react-native';
 type Props = {
   event: string;
   image: string;
-  padding?: number;
+  marginLeft?: number;
 }
 
 const EventCard = (props: Props) => {
-  return <Container padding={props.padding}>
+  return <Container marginLeft={props.marginLeft}>
     <NetWorkImage
       source={{ uri: props.image }}>
       <GradientBackground

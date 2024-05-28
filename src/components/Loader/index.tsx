@@ -2,10 +2,11 @@ import React from 'react';
 
 import { Spinner } from './styles';
 import { Center } from '../Center/styles';
+import appColors from '../../styles/colors/colors';
 
 const Loader = () => {
  return <Center>
-  <Spinner color='#1680eb' />
+  <Spinner color={appColors.secondary} />
  </Center>;
 }
 

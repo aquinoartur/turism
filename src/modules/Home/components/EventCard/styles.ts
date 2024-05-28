@@ -6,12 +6,14 @@ const screenWidth = Dimensions.get('window').width * 0.4;
 const screenHeight = Dimensions.get('window').height * 0.3;
 
 type Props = {
-  padding?: number;
+  marginLeft?: number;
 }
+
 export const Container = styled(View) <Props>`
  margin-top: 20px;
  margin-right: 10px;
  margin-bottom: 10px;
+ margin-left:  ${props => props.marginLeft ? props.marginLeft : 0}px;
 `;
 
 export const NetWorkImage = styled.ImageBackground.attrs({
