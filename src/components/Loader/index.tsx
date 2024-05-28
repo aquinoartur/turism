@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Center, Spinner } from './styles';
+import { Spinner } from './styles';
+import { Center } from '../Center/styles';
 
 const Loader = () => {
  return <Center>

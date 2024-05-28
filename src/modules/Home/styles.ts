@@ -3,31 +3,25 @@ import { spacing } from '../../styles/spacing/spacing';
 import { View } from 'react-native';
 import { appConstants } from '../../constants/appConstants';
 
+
+
+
 type Props = {
   padding?: number;
 }
 
 export const Container = styled(View) <Props>`
-  padding: ${spacing.s16}px;
-  top: ${({ padding }) => padding ? padding : appConstants.components.header.height}px;
   justify-content: top;
-  flex:1;
-`;
-
-export const ListContainer = styled.View`
-  flex-shrink: 1;
 `;
 
 
-export const Post = styled.Text`
-  font-size: 12px;
-  font-weight: bold;
-  color: black;
-  text-align: left;
-  top: 10px;
-  padding: 10px;
-  gap: 10px;
+export const ListView = styled.FlatList.attrs({
+  horizontal: true,
+  showsHorizontalScrollIndicator: false,
+})`
+
 `;
+
 
 export const Divider = styled.View`
 border-bottom-color: gray;

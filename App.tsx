@@ -18,11 +18,14 @@ export default function App() {
           <Stack.Screen
             name="Home"
             component={Home}
-            options={{
-              headerTransparent: true,
-              headerStyle: { height: appConstants.components.header.height },
+            options={
+              {
+                
+              }
+            }
+          />
 
-            }} />
+
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

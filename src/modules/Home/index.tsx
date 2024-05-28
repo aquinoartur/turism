@@ -1,14 +1,20 @@
 
 import { View, Text, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { Container, Divider, ListContainer, Post } from './styles';
+import React, { useEffect, useState, useLayoutEffect } from 'react';
+import { Container, Divider, ListView } from './styles';
 import { getCities, getEvents, getPoints } from './store/homeStore';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Loader from '../../components/Loader';
 import { Center } from '../../components/Center/styles';
+import InitialState from '../../components/InitialState';
+import ErrorState from '../../components/ErrorState';
+import CityCard from './components/CityCard';
+
+import { HeaderContent } from './components/HeaderContent';
+import EventCard from './components/EventCard';
 
 
-export default function Home() {
+export default function Home({ navigation }) {
 
   const insets = useSafeAreaInsets();
 
@@ -20,82 +26,83 @@ export default function Home() {
   const [events, setEvents] = useState([]);
   const [points, setPoints] = useState([]);
 
-
-  const fecthData = async () => {
-    try {
-      setInitial(false);
-      setLoading(true);
-      setCities(await getCities());
-      setEvents(await getEvents());
-      setPoints(await getPoints());
-    } catch (error) {
-      setError('Erro ao buscar posts');
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [headerTitle, setTitle] = useState('');
 
   useEffect(() => {
+    const fecthData = async () => {
+      try {
+        setInitial(false);
+        setLoading(true);
+
+        let response = await getCities();
+        if (response.length > 0) {
+          setTitle(response[0].name);
+        }
+        setCities(response);
+        setEvents(await getEvents());
+        setPoints(await getPoints());
+      } catch (error) {
+        setError('Erro ao buscar posts');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fecthData();
   }, []);
 
-  if (initial) {
-    return <Center>
-      <Text>Inicio</Text>
-    </Center>;
-  }
-  
-  if (loading) {
-    return <Loader />;
-  }
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTransparent: true,
+      animationEnabled: true,
+      header: () => <HeaderContent title={headerTitle}>
+      </HeaderContent>,
+    });
+  }, [navigation, cities]);
 
-  if (error) {
-    return <Center>
-      <Text>Inicio</Text>
-    </Center>;
-  }
+
+  if (initial)
+    return <InitialState />;
+
+  if (loading)
+    return <Loader />;
+
+  if (error)
+    return <ErrorState />;
+
 
   return (
     <Container>
-      <ListContainer>
-        <FlatList
-          data={cities}
-          keyExtractor={(city) => (city.id as String).toString()}
-          contentContainerStyle={({ flexGrow: 0 })}
-          renderItem={({ item: city }) => (
-            <View>
-              <Post>{city.name}{'\n'} </Post>
-              <Divider />
-            </View>
-          )}
-        />
-      </ListContainer>
-      <ListContainer>
-        <FlatList
-          data={events}
-          keyExtractor={(event) => (event.id as String).toString()}
-          contentContainerStyle={({ flexGrow: 0 })}
-          renderItem={({ item: event }) => (
-            <View>
-              <Post>{event.name}{'\n'} </Post>
-              <Divider />
-            </View>
-          )}
-        />
-      </ListContainer>
-      <ListContainer>
-        <FlatList
-          data={points}
-          keyExtractor={(points) => (points.id as String).toString()}
-          contentContainerStyle={({ flexGrow: 0 })}
-          renderItem={({ item: point }) => (
-            <View>
-              <Post>{point.name}{'\n'} </Post>
-              <Divider />
-            </View>
-          )}
-        />
-      </ListContainer>
+      <ListView
+        data={cities[0].photos}
+        keyExtractor={(photo) => photo.toString()}
+        renderItem={({ item: photo }) => (
+          <CityCard
+            city={cities[0].name}
+            image={photo as string}
+          />
+        )}
+      />
+      <ListView
+        data={events[0].photos}
+        keyExtractor={(photo) => photo.toString()}
+        renderItem={({ item: photo }) => (
+          <EventCard
+            event={events[0].name}
+            image={photo as string}
+          />
+        )}
+      />
+      <FlatList
+        data={points}
+        keyExtractor={(points) => (points.id as String).toString()}
+        renderItem={({ item: point }) => (
+          <View>
+            <Text>{point.name}{'\n'} </Text>
+            <Divider />
+          </View>
+        )}
+      />
     </Container>
   );
 }
