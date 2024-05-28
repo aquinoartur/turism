@@ -1,6 +1,6 @@
 
 
-import Home from './src/pages/Home';
+import Home from './src/modules/Home';
 import { StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 

@@ -1,10 +1,17 @@
 import styled from 'styled-components/native';
+import { spacing } from '../../styles/spacing/spacing';
 
 export const Container = styled.View`
-  align-items: center;
-  justify-content: center;
-  flex: 1;
+  padding: ${spacing.s16}px;
+  top: ${spacing.s20}px;
+  justify-content: top;
+  flex:1;
 `;
+
+export const ListContainer = styled.View`
+  flex-shrink: 1, 
+`;
+
 
 export const Post = styled.Text`
   font-size: 12px;
