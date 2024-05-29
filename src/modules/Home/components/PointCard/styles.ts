@@ -3,7 +3,7 @@ import { Dimensions, View } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 
 const screenWidth = Dimensions.get('window').width * 0.4;
-const screenHeight = Dimensions.get('window').height * 0.2;
+const screenHeight = Dimensions.get('window').height * 0.3;
 
 type Props = {
   marginLeft?: number;

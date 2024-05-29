@@ -2,7 +2,7 @@
 import { View, Text, FlatList, ActivityIndicator, StyleSheet, ListRenderItem } from 'react-native';
 import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { Scrollable, Divider, ListView } from './styles';
-import { getCities, getEvents, getPoints } from './store/homeStore';
+import { getCities, getEvents, getPoints } from './repository/HomeRepository';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Loader from '../../components/Loader';
 import InitialState from '../../components/InitialState';
@@ -16,8 +16,10 @@ import EventCard from './components/EventCard';
 import AppLabel from '../../components/AppLabel';
 import { spacing } from '../../styles/spacing/spacing';
 import { ScrollView } from 'react-native-gesture-handler';
+import { CityPoint } from '../../model/CityPoint/CityPoint';
+import PointCard from './components/PointCard';
 
-
+export const HomeScreenRouteName = 'Home';
 export default function Home({ navigation }) {
 
   const insets = useSafeAreaInsets();
@@ -28,7 +30,7 @@ export default function Home({ navigation }) {
 
   const [cities, setCities] = useState([]);
   const [events, setEvents] = useState<CityEvent[]>([]);
-  const [points, setPoints] = useState([]);
+  const [points, setPoints] = useState<CityPoint[]>([]);
 
   const [headerTitle, setTitle] = useState('');
 
@@ -59,6 +61,7 @@ export default function Home({ navigation }) {
     navigation.setOptions({
       headerTransparent: true,
       animationEnabled: true,
+      tabBarLabel: 'Início',
       header: () => <HeaderContent title={headerTitle}>
       </HeaderContent>,
     });
@@ -81,6 +84,13 @@ export default function Home({ navigation }) {
       marginLeft={index == 0 && spacing.s16}
     />
   );
+  const renderPoint: ListRenderItem<CityPoint> = ({ item, index }) => (
+    <PointCard
+      event={item.name}
+      image={item.photos[0]}
+      marginLeft={index == 0 && spacing.s16}
+    />
+  );
 
   return (
     <Scrollable>
@@ -94,16 +104,17 @@ export default function Home({ navigation }) {
           />
         )}
       />
+      <AppLabel label='Pontos Turísticos' />
+      <ListView
+        data={points}
+        renderItem={renderPoint}
+      />
       <AppLabel label='Eventos' />
       <ListView
         data={events}
         renderItem={renderEvent}
       />
-      <AppLabel label='Pontos Turísticos' />
-      <ListView
-        data={events}
-        renderItem={renderEvent}
-      />
+
     </Scrollable>
   );
 }
