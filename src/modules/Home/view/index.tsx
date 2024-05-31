@@ -2,25 +2,25 @@
 import { View, Text, FlatList, ActivityIndicator, StyleSheet, ListRenderItem } from 'react-native';
 import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { Scrollable, Divider, ListView } from './styles';
-import { getCities, getEvents, getPoints } from './repository/HomeRepository';
+import { getCities, getEvents, getPoints } from '../repository/HomeRepository';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Loader from '../../components/Loader';
-import InitialState from '../../components/InitialState';
-import ErrorState from '../../components/ErrorState';
-import CityCard from './components/CityCard';
-import { CityEvent } from "../../model/CityEvent/CityEvent";
+import Loader from '../../../components/Loader';
+import InitialState from '../../../components/InitialState';
+import ErrorState from '../../../components/ErrorState';
+import CityCard from '../components/CityCard';
+import { CityEvent } from "../../../model/CityEvent/CityEvent";
 
 
-import { HeaderContent } from './components/HeaderContent';
-import EventCard from './components/EventCard';
-import AppLabel from '../../components/AppLabel';
-import { spacing } from '../../styles/spacing/spacing';
+import { HeaderContent } from '../components/HeaderContent';
+import EventCard from '../components/EventCard';
+import AppLabel from '../../../components/AppLabel';
+import { spacing } from '../../../styles/spacing/spacing';
 import { ScrollView } from 'react-native-gesture-handler';
-import { CityPoint } from '../../model/CityPoint/CityPoint';
-import PointCard from './components/PointCard';
+import { CityPoint } from '../../../model/CityPoint/CityPoint';
+import PointCard from '../components/PointCard';
 
-export const HomeScreenRouteName = 'Home';
-export default function Home({ navigation }) {
+export const HomeViewRouteName = 'Home';
+export default function HomeView({ navigation }) {
 
   const insets = useSafeAreaInsets();
 

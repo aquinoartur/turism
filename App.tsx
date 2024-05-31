@@ -1,6 +1,6 @@
 
 
-import Home from './src/modules/Home';
+import HomeView from './src/modules/Home/view';
 import { StatusBar, View, Text } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
