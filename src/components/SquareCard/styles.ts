@@ -10,18 +10,22 @@ type Props = {
 }
 
 export const Container = styled(View) <Props>`
- margin-top: 20px;
+ margin-top: 10px;
  margin-right: 10px;
- margin-bottom: 10px;
+ margin-bottom: 0px;
  margin-left:  ${props => props.marginLeft ? props.marginLeft : 0}px;
 `;
 
+
+type ImageProps = {
+  size?: number;
+}
 export const NetWorkImage = styled.ImageBackground.attrs({
   resizeMode: 'cover',
   borderRadius: 10,
-})`
- height: ${screenHeight}px;
- width: ${screenWidth}px;
+}) <ImageProps>`
+ height: ${props => props.size ? props.size : screenWidth}px;
+ width: ${props => props.size ? props.size : screenWidth}px;
 
 `;
 

@@ -4,7 +4,7 @@ import { ScrollView } from 'react-native';
 
 export const Scrollable = styled(ScrollView).attrs({
   showsVerticalScrollIndicator: false,
-  bounces: false,
+  bounces: true,
 })``;
 
 

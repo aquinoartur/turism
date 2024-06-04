@@ -1,15 +1,18 @@
 import React from "react";
 import { City } from "../../../model/City/City";
 import { CityPoint } from "../../../model/CityPoint/CityPoint";
+import { CityEvent } from "../../../model/CityEvent/CityEvent";
 
-export interface SearchCitiesViewModel {
- cities: City[];
- citiesIsLoading: boolean;
- setCities: React.Dispatch<React.SetStateAction<City[]>>;
+export interface SearchEventsViewModel {
+ events: CityEvent[];
+ eventsIsLoading: boolean;
+ eventsError: string | null;
+ fetchEvents: () => Promise<void>;
 } 
 
 export interface SearchPointsViewModel {
  points: CityPoint[];
  pointsIsLoading: boolean;
- setPoints: React.Dispatch<React.SetStateAction<CityPoint[]>>;
+ pointsError: string | null;
+ fetchPoints: () => Promise<void>;
 } 

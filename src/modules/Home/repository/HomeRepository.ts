@@ -1,9 +1,9 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "../../../services/firebase/firebaseConfig";
 import { appKeys } from "../../../constants/appKeys";
-import { CityEvent } from "../../../model/CityEvent/CityEvent";
 import { City } from "../../../model/City/City";
 import { CityPoint, CityPointFromJson } from "../../../model/CityPoint/CityPoint";
+import { CityEvent } from "../../../model/CityEvent/CityEvent";
 
 
 
@@ -23,7 +23,8 @@ export const getCities = async (): Promise<City[]> => {
 
 export const getEvents = async (): Promise<CityEvent[]> => {
   try {
-    const querySnapshot = await getDocs(collection(db, appKeys.events));
+    const q = query(collection(db, appKeys.events), orderBy('date'), limit(2));
+    const querySnapshot = await getDocs(q);
     const list = querySnapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data(),
@@ -43,7 +44,7 @@ export const getPoints = async (): Promise<CityPoint[]> => {
         id: doc.id,
         ...doc.data(),
       }))
-  );
+    );
     return list;
   } catch (error) {
     console.error('Erro ao buscar pontos turístricos', error);

@@ -8,16 +8,15 @@ import Loader from '../../../components/Loader';
 import InitialState from '../../../components/InitialState';
 import ErrorState from '../../../components/ErrorState';
 import CityCard from '../components/CityCard';
-import { CityEvent } from "../../../model/CityEvent/CityEvent";
 
 
 import { HeaderContent } from '../components/HeaderContent';
-import EventCard from '../components/EventCard';
+import SquareCard from '../../../components/SquareCard';
 import AppLabel from '../../../components/AppLabel';
 import { spacing } from '../../../styles/spacing/spacing';
-import { ScrollView } from 'react-native-gesture-handler';
 import { CityPoint } from '../../../model/CityPoint/CityPoint';
 import PointCard from '../components/PointCard';
+import { CityEvent } from '../../../model/CityEvent/CityEvent';
 
 export const HomeViewRouteName = 'Home';
 export default function HomeView({ navigation }) {
@@ -78,12 +77,13 @@ export default function HomeView({ navigation }) {
     return <ErrorState />;
 
   const renderEvent: ListRenderItem<CityEvent> = ({ item, index }) => (
-    <EventCard
+    <SquareCard
       event={item.name}
       image={item.photos[0]}
       marginLeft={index == 0 && spacing.s16}
     />
   );
+
   const renderPoint: ListRenderItem<CityPoint> = ({ item, index }) => (
     <PointCard
       event={item.name}
@@ -114,7 +114,6 @@ export default function HomeView({ navigation }) {
         data={events}
         renderItem={renderEvent}
       />
-
     </Scrollable>
   );
 }
