@@ -11,7 +11,7 @@ import appColors from '../../../styles/colors/colors';
 import { useLayoutEffect } from 'react';
 import { CityEvent } from '../../../model/CityEvent/CityEvent';
 
-export const SearchViewRouteName = 'Search';
+export const SearchViewRouteName = 'Explorar';
 export function SearchView({ navigation }) {
   const { events, eventsIsLoading, eventsError, fetchEvents } = searchEventsViewModel()
   const { points, pointsIsLoading, pointsError, fetchPoints } = searchPointsViewModel()
@@ -90,7 +90,6 @@ const screenWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: appColors.background,
   },
   listView: {
     margin: 10

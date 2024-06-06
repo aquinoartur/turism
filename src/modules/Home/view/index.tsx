@@ -17,8 +17,10 @@ import { spacing } from '../../../styles/spacing/spacing';
 import { CityPoint } from '../../../model/CityPoint/CityPoint';
 import PointCard from '../components/PointCard';
 import { CityEvent } from '../../../model/CityEvent/CityEvent';
+import { EventDetailsScreenRouteName } from '../../EventDetails/view';
+import { PointDetailsScreenRouteName } from '../../PointDetails/view';
 
-export const HomeViewRouteName = 'Home';
+export const HomeViewRouteName = 'Inicio';
 export default function HomeView({ navigation }) {
 
   const insets = useSafeAreaInsets();
@@ -81,6 +83,7 @@ export default function HomeView({ navigation }) {
       event={item.name}
       image={item.photos[0]}
       marginLeft={index == 0 && spacing.s16}
+      onPress={() => navigation.navigate(EventDetailsScreenRouteName, { event: item })}
     />
   );
 
@@ -89,6 +92,7 @@ export default function HomeView({ navigation }) {
       event={item.name}
       image={item.photos[0]}
       marginLeft={index == 0 && spacing.s16}
+      onPress={() => navigation.navigate(PointDetailsScreenRouteName, { point: item })}
     />
   );
 
@@ -96,7 +100,6 @@ export default function HomeView({ navigation }) {
     <Scrollable>
       <ListView
         data={cities[0].photos}
-        keyExtractor={(photo) => photo.toString()}
         renderItem={({ item: photo }) => (
           <CityCard
             city={cities[0].name}

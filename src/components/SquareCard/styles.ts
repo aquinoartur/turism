@@ -1,6 +1,7 @@
 import { styled } from "styled-components/native";
 import { Dimensions, View } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
+import { TouchableOpacity } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width * 0.4;
 const screenHeight = Dimensions.get('window').height * 0.2;
@@ -9,7 +10,7 @@ type Props = {
   marginLeft?: number;
 }
 
-export const Container = styled(View) <Props>`
+export const Container = styled(TouchableOpacity) <Props>`
  margin-top: 10px;
  margin-right: 10px;
  margin-bottom: 0px;

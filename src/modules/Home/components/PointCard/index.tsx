@@ -1,22 +1,22 @@
 import React from 'react';
 import { NetWorkImage, GradientBackground, Container, EventName } from './styles';
 import appColors from '../../../../styles/colors/colors';
-import { Text } from 'react-native';
+import { TouchableOpacityProps } from "react-native";
 
-type Props = {
+type Props =  TouchableOpacityProps & {
   event: string;
   image: string;
   marginLeft?: number;
 }
 
-const PointCard = (props: Props) => {
-  return <Container marginLeft={props.marginLeft}>
+const PointCard = ({event, image, marginLeft, ...rest}: Props) => {
+  return <Container marginLeft={marginLeft} {...rest}>
     <NetWorkImage
-      source={{ uri: props.image }}>
+      source={{ uri: image }}>
       <GradientBackground
         colors={['#00000000', appColors.dark]} >
         <EventName>
-          {props.event}
+          {event}
         </EventName>
       </GradientBackground>
     </NetWorkImage>
