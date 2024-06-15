@@ -3,7 +3,7 @@ import { Dimensions, View } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 import { TouchableOpacity } from 'react-native';
 
-const screenWidth = Dimensions.get('window').width * 0.4;
+const screenWidth = Dimensions.get('window').width * 0.6;
 const screenHeight = Dimensions.get('window').height * 0.3;
 
 type Props = {

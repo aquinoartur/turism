@@ -19,6 +19,7 @@ import PointCard from '../components/PointCard';
 import { CityEvent } from '../../../model/CityEvent/CityEvent';
 import { EventDetailsScreenRouteName } from '../../EventDetails/view';
 import { PointDetailsScreenRouteName } from '../../PointDetails/view';
+import { VerticalGap } from '../../../components/Gap';
 
 export const HomeViewRouteName = 'Inicio';
 export default function HomeView({ navigation }) {
@@ -117,6 +118,7 @@ export default function HomeView({ navigation }) {
         data={events}
         renderItem={renderEvent}
       />
+      <VerticalGap h={20} />
     </Scrollable>
   );
 }

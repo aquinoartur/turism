@@ -6,7 +6,7 @@ import appColors from '../../styles/colors/colors';
 
 const Loader = () => {
  return <Center>
-  <Spinner color={appColors.secondary} />
+  <Spinner />
  </Center>;
 }
 

@@ -1,15 +1,33 @@
 import { styled } from "styled-components/native";
 import { Dimensions } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
+import appColors from "../../../../styles/colors/colors";
 
-const screenWidth = Dimensions.get('window').width * 0.9;
-const screenHeight = Dimensions.get('window').height * 0.6;
+
+const size = 80;
+const borderRadius = size / 2;
+const borderWidth = 4;
+
+export const Container = styled.View`
+  margin-top:100px;
+  margin-right: 10px;
+  margin-left: 10px;
+  height:${size}px;
+ width: ${size}px;
+ border-radius:${borderRadius}px;
+  overflow: hidden;
+  align-items: center;
+  border-color: ${appColors.gray};
+  border-width: 3px;
+  align-content: center;
+`;
 
 export const NetWorkImage = styled.ImageBackground.attrs({
   resizeMode: 'cover',
+  borderRadius: borderRadius,
 })`
- height: ${screenHeight}px;
- width: ${screenWidth}px;
+ height:${size}px;
+ width: ${size}px;
 `;
 
 export const GradientBackground = styled(LinearGradient).attrs({
@@ -17,7 +35,8 @@ export const GradientBackground = styled(LinearGradient).attrs({
   end: { x: 0, y: 1 },
   locations: [.6, 1],
 })`
-  height: 100%;
-  width: 100%;
+  height: ${size}px;
+  width:${size}px;
+  border-radius:${borderRadius}px;
   position: absolute;
  `;

@@ -35,6 +35,8 @@ function SearchStackScreen() {
       }}
     >
       <SearchStack.Screen name={SearchViewRouteName} component={SearchView} />
+      <HomeStack.Screen name={EventDetailsScreenRouteName} component={EventDetailsScreen} />
+      <HomeStack.Screen name={PointDetailsScreenRouteName} component={PointDetailsScreen} />
     </SearchStack.Navigator>
   );
 }

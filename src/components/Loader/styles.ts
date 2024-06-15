@@ -1,11 +1,8 @@
 import { ActivityIndicator } from 'react-native';
 import styled from 'styled-components/native';
 
-type Props = {
-  color: string;
-};
 
-export const Spinner = styled(ActivityIndicator)<Props>`
+
+export const Spinner = styled(ActivityIndicator)`
     size: large;
-    color:  ${({ color }) => color ? color : 'black'};
 `;

@@ -3,13 +3,16 @@ import { searchEventsViewModel, searchPointsViewModel } from '../models/view.mod
 import Loader from '../../../components/Loader';
 import ErrorState from '../../../components/ErrorState';
 import SquareCard from '../../../components/SquareCard';
-import { spacing } from '../../../styles/spacing/spacing';
 import { Scrollable } from '../../Home/view/styles';
 import AppLabel from '../../../components/AppLabel';
 import { CityPoint } from '../../../model/CityPoint/CityPoint';
-import appColors from '../../../styles/colors/colors';
 import { useLayoutEffect } from 'react';
 import { CityEvent } from '../../../model/CityEvent/CityEvent';
+import { EventDetailsScreenRouteName } from '../../EventDetails/view';
+import { PointDetailsScreenRouteName } from '../../PointDetails/view';
+
+const numColumns = 2;
+const screenWidth = Dimensions.get('window').width;
 
 export const SearchViewRouteName = 'Explorar';
 export function SearchView({ navigation }) {
@@ -27,13 +30,10 @@ export function SearchView({ navigation }) {
 
 
   if (eventsIsLoading || pointsIsLoading) {
-    console.log('loading')
     return <Loader />;
   } else if (eventsError || pointsError) {
-    console.log('error')
     return <ErrorState />;
   } else {
-    console.log('build')
 
     const cardSize = screenWidth * 0.9 / numColumns;
 
@@ -42,6 +42,9 @@ export function SearchView({ navigation }) {
         event={item.name}
         image={item.photos[0]}
         width={cardSize}
+        onPress={() => {
+          navigation.navigate(EventDetailsScreenRouteName, { event: item })
+        }}
       />
     );
 
@@ -50,6 +53,9 @@ export function SearchView({ navigation }) {
         event={item.name}
         image={item.photos[0]}
         width={cardSize}
+        onPress={() => {
+          navigation.navigate(PointDetailsScreenRouteName, { point: item })
+        }}
       />
     );
 
@@ -85,8 +91,7 @@ export function SearchView({ navigation }) {
   }
 }
 
-const numColumns = 2;
-const screenWidth = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
