@@ -4,7 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { TouchableOpacity } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width * 0.6;
-const screenHeight = Dimensions.get('window').height * 0.3;
+const screenHeight = Dimensions.get('window').height * 0.1;
 
 type Props = {
   marginLeft?: number;

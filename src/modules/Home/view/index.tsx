@@ -20,6 +20,7 @@ import { CityEvent } from '../../../model/CityEvent/CityEvent';
 import { EventDetailsScreenRouteName } from '../../EventDetails/view';
 import { PointDetailsScreenRouteName } from '../../PointDetails/view';
 import { VerticalGap } from '../../../components/Gap';
+import { SvgAsset, SvgImage } from '../../../components/SvgImage';
 
 export const HomeViewRouteName = 'Inicio';
 export default function HomeView({ navigation }) {
@@ -99,6 +100,7 @@ export default function HomeView({ navigation }) {
 
   return (
     <Scrollable>
+      <VerticalGap h={10} />
       <ListView
         data={cities[0].photos}
         renderItem={({ item: photo }) => (
@@ -108,17 +110,24 @@ export default function HomeView({ navigation }) {
           />
         )}
       />
+      <VerticalGap h={20} />
       <AppLabel label='Pontos Turísticos' />
       <ListView
         data={points}
         renderItem={renderPoint}
       />
+      <VerticalGap h={20} />
       <AppLabel label='Eventos' />
       <ListView
         data={events}
         renderItem={renderEvent}
       />
-      <VerticalGap h={20} />
-    </Scrollable>
+      <VerticalGap h={25} />
+      <SvgImage
+        height={200}
+        width={200}
+        asset={SvgAsset.Camping}
+      />
+    </Scrollable >
   );
 }

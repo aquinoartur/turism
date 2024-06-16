@@ -62,7 +62,7 @@ export function RootScreens() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarActiveTintColor: appColors.secondaryDark,
+        tabBarActiveTintColor: appColors.primary,
         tabBarInactiveTintColor: appColors.regularGray,
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;

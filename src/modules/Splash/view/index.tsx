@@ -1,7 +1,6 @@
 import { View, Text } from "react-native";
 import LottieView from 'lottie-react-native';
 import React, { useRef, useEffect } from 'react';
-import { HomeViewRouteName } from "../../Home/view";
 
 type Props = {
  onCompleted: (status: boolean) => void;
@@ -9,8 +8,6 @@ type Props = {
 export function SplashScreen({ onCompleted }: Props) {
  const animation = useRef(null);
  useEffect(() => {
-  // You can control the ref programmatically, rather than using autoPlay
-  // animation.current?.play();
  }, []);
 
  return (

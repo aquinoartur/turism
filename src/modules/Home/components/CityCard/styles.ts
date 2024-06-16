@@ -6,7 +6,6 @@ import appColors from "../../../../styles/colors/colors";
 
 const size = 80;
 const borderRadius = size / 2;
-const borderWidth = 4;
 
 export const Container = styled.View`
   margin-top:100px;
